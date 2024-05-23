@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://ncuen1w70evi"]
+
+[ext_resource type="PackedScene" uid="uid://cb2qluqoi8knx" path="res://Scenes/player.tscn" id="1_8j1q5"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_xirnq"]
+[ext_resource type="AudioStream" uid="uid://jkg2afgcten0" path="res://Assets/Sounds/Musics/happy-birthday-mr-jones-master-track-207394.mp3" id="2_68klm"]
+[ext_resource type="PackedScene" uid="uid://b6w083j4t8kmo" path="res://Scenes/UI.tscn" id="6_o7r1q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i17k4"]
+size = Vector2(22.7273, 32.131)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5c1hl"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_xirnq")
+
+[node name="Floor2D" type="StaticBody2D" parent="."]
+position = Vector2(80, 232)
+scale = Vector2(1, 0.6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2D"]
+scale = Vector2(7.04, 0.84)
+shape = SubResource("RectangleShape2D_i17k4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor2D/CollisionShape2D"]
+modulate = Color(0, 0.623529, 0, 1)
+position = Vector2(0, -0.192447)
+scale = Vector2(22.7273, 31.746)
+texture = SubResource("CanvasTexture_5c1hl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(80, 120)
+
+[node name="Player" parent="." instance=ExtResource("1_8j1q5")]
+position = Vector2(80, 208)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_68klm")
+volume_db = -7.429
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="Ui" parent="." instance=ExtResource("6_o7r1q")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

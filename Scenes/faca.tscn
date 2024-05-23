@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmhu1c5nteyrs"]
+
+[ext_resource type="Script" path="res://Scripts/presente.gd" id="1_4882x"]
+[ext_resource type="Texture2D" uid="uid://coqy870ruwrx2" path="res://Assets/Sprites/SpritesSheet.sprites/knife.tres" id="2_03r72"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3r6ut"]
+size = Vector2(18, 20)
+
+[node name="Faca" type="Area2D"]
+script = ExtResource("1_4882x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3r6ut")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_03r72")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

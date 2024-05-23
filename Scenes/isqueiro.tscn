@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt8tkcbrh2d7w"]
+
+[ext_resource type="Script" path="res://Scripts/presente.gd" id="1_66fj3"]
+[ext_resource type="Texture2D" uid="uid://d4am4rpr6f073" path="res://Assets/Sprites/SpritesSheet.sprites/isqueiro.tres" id="2_3xtds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3r6ut"]
+size = Vector2(18, 20)
+
+[node name="Isqueiro" type="Area2D"]
+script = ExtResource("1_66fj3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3r6ut")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_3xtds")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
